@@ -1309,6 +1309,7 @@ void TWFunc::check_selinux_support() {
 	}
 }
 
+#ifndef TW_EXCLUDE_TWRPAPP
 bool TWFunc::Is_TWRP_App_In_System() {
 	LOGINFO("checking for twrp app\n");
 	TWPartition* sys = PartitionManager.Find_Partition_By_Path(PartitionManager.Get_Android_Root_Path());
@@ -1337,6 +1338,7 @@ bool TWFunc::Is_TWRP_App_In_System() {
 	DataManager::SetValue("tw_app_installed_in_system", 0);
 	return false;
 }
+#endif
 
 void TWFunc::checkforapp(){
 
