@@ -355,7 +355,6 @@ int TWPartitionManager::Process_Fstab(string Fstab_Filename, bool Display_Error)
 	Decrypt_Data();
 #endif
 
-	Update_System_Details();
 	if (Get_Super_Status())
 		Setup_Super_Partition();
 	UnMount_Main_Partitions();
@@ -1771,6 +1770,7 @@ void TWPartitionManager::Post_Decrypt(const string& Block_Device) {
 			DataManager::SetValue("tw_settings_path", "/data/media/0");
 			dat->UnMount(false);
 		}
+		DataManager::LoadTWRPFolderInfo();
 		Update_System_Details();
 		Output_Partition(dat);
 		UnMount_Main_Partitions();
@@ -3406,7 +3406,6 @@ void TWPartitionManager::Setup_Super_Partition() {
 	superPartition->Setup_Image();
 	Add_Partition(superPartition);
 	PartitionManager.Output_Partition(superPartition);
-	Update_System_Details();
 }
 
 bool TWPartitionManager::Get_Super_Status() {
