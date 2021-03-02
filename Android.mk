@@ -150,6 +150,10 @@ ifeq ($(PRODUCT_USE_DYNAMIC_PARTITIONS),true)
     TWRP_REQUIRED_MODULES += android.hardware.health@2.0-service android.hardware.health@2.0-service.rc
 endif
 
+ifneq ($(TW_INCLUDE_LOGICAL),)
+        LOCAL_CFLAGS += -DEXTRA_LOGICAL_PARTITIONS='"$(TW_INCLUDE_LOGICAL)"'
+endif
+    
 ifeq ($(TW_USES_VENDOR_LIBS),true)
     LOCAL_CFLAGS += -DUSE_VENDOR_LIBS=1
 endif
