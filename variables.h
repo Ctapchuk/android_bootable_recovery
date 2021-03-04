@@ -145,7 +145,7 @@
 #define TW_MILITARY_TIME            "tw_military_time"
 #define TW_USE_SHA2                 "tw_use_sha2"
 #define TW_NO_SHA2                  "tw_no_sha2"
-#define TW_UNMOUNT_SYSTEM           "tw_unmount_system"
+#define TW_UNMOUNT_DYNAMIC          "tw_unmount_dynamic"
 #define TW_IS_SUPER                 "tw_is_super"
 
 // Also used:

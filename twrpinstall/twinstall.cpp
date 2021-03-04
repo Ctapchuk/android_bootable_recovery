@@ -352,7 +352,7 @@ static int Run_Update_Binary(const char *path, int* wipe_cache, zip_type ztype) 
 }
 
 int TWinstall_zip(const char* path, int* wipe_cache) {
-	int ret_val, zip_verify = 1, unmount_system = 1;
+	int ret_val, zip_verify = 1, unmount_dynamic = 1;
 
 	gui_msg(Msg("installing_zip=Installing zip file '{1}'")(path));
 	if (strlen(path) < 9 || strncmp(path, "/sideload", 9) != 0) {
@@ -367,7 +367,7 @@ int TWinstall_zip(const char* path, int* wipe_cache) {
 		}
 	}
 
-	DataManager::GetValue(TW_UNMOUNT_SYSTEM, unmount_system);
+	DataManager::GetValue(TW_UNMOUNT_DYNAMIC, unmount_dynamic);
 
 #ifndef TW_OEM_BUILD
 	DataManager::GetValue(TW_SIGNED_ZIP_VERIFY_VAR, zip_verify);
@@ -407,14 +407,20 @@ int TWinstall_zip(const char* path, int* wipe_cache) {
 		return INSTALL_CORRUPT;
 	}
 
-	if (unmount_system) {
-		gui_msg("unmount_system=Unmounting System...");
-		if(!PartitionManager.UnMount_By_Path(PartitionManager.Get_Android_Root_Path(), true)) {
-			gui_err("unmount_system_err=Failed unmounting System");
+	if (unmount_dynamic) {
+		gui_msg("unmount_system=Unmounting dynamic partitions...");
+		if(!PartitionManager.UnMount_Main_Partitions()) {
+			gui_err("unmount_dynamic_err=Failed unmounting dynamic partitions");
 			return -1;
 		}
 		unlink("/system");
+		unlink("/product");
+		unlink("/vendor");
+		unlink("/data");
 		mkdir("/system", 0755);
+		mkdir("/product", 0755);
+		mkdir("/vendor", 0755);
+		mkdir("/data", 0755);
 	}
 
 	time_t start, stop;
