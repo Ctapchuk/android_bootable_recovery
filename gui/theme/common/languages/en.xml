@@ -735,7 +735,7 @@
 		<string name="include_kernel_log">Include Kernel Log</string>
 		<string name="sha2_chk">Use SHA2 for hashing</string>
 		<string name="unable_set_boot_slot">Error changing bootloader boot slot to {1}</string>
-		<string name="unmount_dyn_install">Unmount all system part. before installing a ZIP</string>
+		<string name="unmount_dyn_install">Unmount dynamic part. before installing a ZIP</string>
 		<string name="unmount_dynamic">Unmounting dynamic partitions...</string>
 		<string name="unmount_dynamic_err">Failed unmounting dynamic partitions</string>
 		<string name="flash_ab_inactive">Flashing A/B zip to inactive slot: {1}</string>

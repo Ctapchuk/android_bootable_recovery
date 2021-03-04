@@ -408,18 +408,19 @@ int TWinstall_zip(const char* path, int* wipe_cache) {
 	}
 
 	if (unmount_dynamic) {
-		gui_msg("unmount_system=Unmounting dynamic partitions...");
-		if(!PartitionManager.UnMount_Main_Partitions()) {
-			gui_err("unmount_dynamic_err=Failed unmounting dynamic partitions");
-			return -1;
-		}
+		gui_msg("unmount_dynamic=Unmounting dynamic partitions...");
+		PartitionManager.UnMount_Main_Partitions();
 		unlink("/system");
+		unlink("/system_ext");
 		unlink("/product");
 		unlink("/vendor");
+		unlink("/odm");
 		unlink("/data");
 		mkdir("/system", 0755);
+		mkdir("/system_ext", 0755);
 		mkdir("/product", 0755);
 		mkdir("/vendor", 0755);
+		mkdir("/odm", 0755);
 		mkdir("/data", 0755);
 	}
 

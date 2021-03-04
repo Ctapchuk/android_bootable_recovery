@@ -3725,7 +3725,7 @@
 					<condition var1="tw_no_sha2" var2="0"/>
 					<data variable="tw_use_sha2"/>
 				</listitem>
-				<listitem name="{@unmount_sys_install=Unmount all system part. before installing a ZIP}">
+				<listitem name="{@unmount_dyn_install=Unmount dynamic part. before installing a ZIP}">
 					<data variable="tw_unmount_dynamic"/>
 				</listitem>
 			</listbox>
