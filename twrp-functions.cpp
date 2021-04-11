@@ -611,10 +611,10 @@ void TWFunc::Update_Log_File(void) {
 		}
 	}
 
-	std::string logCopy = recoveryDir + "log.gz";
-	std::string lastLogCopy = recoveryDir + "last_log.gz";
+	std::string logCopy = recoveryDir + "recovery.log";
+	std::string lastLogCopy = recoveryDir + "lastrecoverylog.txt";
+	copy_file(TMP_LOG_FILE, logCopy, 644);
 	copy_file(logCopy, lastLogCopy, 600);
-	Copy_Log(TMP_LOG_FILE, logCopy);
 	chown(logCopy.c_str(), 1000, 1000);
 	chmod(logCopy.c_str(), 0600);
 	chmod(lastLogCopy.c_str(), 0640);
