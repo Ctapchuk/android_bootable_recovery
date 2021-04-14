@@ -121,6 +121,7 @@ public:
 	static void List_Mounts();
 	static void Clear_Bootloader_Message();
 	static string Check_For_TwrpFolder();
+	static void PostWipeEncryption(void); // run after formatting data to recreate /data/media/0/ + /sdcard/Fox/logs/ automatically
 
 private:
 	static void Copy_Log(string Source, string Destination);

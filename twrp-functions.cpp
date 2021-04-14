@@ -1399,6 +1399,27 @@ void TWFunc::List_Mounts() {
 	}
 }
 
+void TWFunc::PostWipeEncryption(void) {
+  gui_print("Recreating /data/media/0...\n");
+  sleep(1);
+  TWFunc::Recursive_Mkdir("/data/media/0/TWRP", false);
+
+  TWFunc::Recursive_Mkdir("/sdcard/TWRP", false);
+  
+  sleep(1);
+  string cmd = "/system/bin/mount";
+  if (!TWFunc::Path_Exists(cmd))
+     cmd = "/sbin/mount";
+
+  cmd = cmd + " -o bind /data/media/0 /sdcard";
+  TWFunc::Exec_Cmd(cmd);
+  sleep(1);
+  sync();
+
+  gui_msg("done=Done.");
+}
+
+
 bool TWFunc::Get_Encryption_Policy(fscrypt_encryption_policy &policy, std::string path) {
 	if (!TWFunc::Path_Exists(path)) {
 		LOGERR("Unable to find %s to get policy\n", path.c_str());

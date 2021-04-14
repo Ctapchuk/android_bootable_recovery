@@ -2067,8 +2067,10 @@ bool TWPartition::Wipe_Encryption() {
 		ret = true;
 		if (!Key_Directory.empty())
 			ret = PartitionManager.Wipe_By_Path(Key_Directory);
-		if (ret)
+		if (ret) {
 			ret = base_partition->PostWipeEncryption();
+			TWFunc::PostWipeEncryption();
+		}
 		goto exit;
 	} else {
 		Has_Data_Media = Save_Data_Media;
