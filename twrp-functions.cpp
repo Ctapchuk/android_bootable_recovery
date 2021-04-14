@@ -1402,9 +1402,9 @@ void TWFunc::List_Mounts() {
 void TWFunc::PostWipeEncryption(void) {
   gui_print("Recreating /data/media/0...\n");
   sleep(1);
-  TWFunc::Recursive_Mkdir("/data/media/0/TWRP", false);
+  TWFunc::Recursive_Mkdir("/data/media/0/TWRP");
 
-  TWFunc::Recursive_Mkdir("/sdcard/TWRP", false);
+  TWFunc::Recursive_Mkdir("/sdcard/TWRP");
   
   sleep(1);
   string cmd = "/system/bin/mount";
