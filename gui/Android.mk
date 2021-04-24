@@ -1,5 +1,4 @@
 LOCAL_PATH := $(call my-dir)
-
 # Transfer in the resources for the device
 include $(CLEAR_VARS)
 LOCAL_MODULE := twrp

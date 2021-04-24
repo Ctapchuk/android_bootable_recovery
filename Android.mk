@@ -138,6 +138,8 @@ ifeq ($(TW_OEM_BUILD),true)
     TW_USE_TOOLBOX := true
     TW_EXCLUDE_MTP := true
     TW_EXCLUDE_TZDATA := true
+    TW_EXCLUDE_NANO := true
+    TW_EXCLUDE_BASH := true
 endif
 
 ifeq ($(AB_OTA_UPDATER),true)
@@ -375,6 +377,9 @@ ifneq ($(TW_INCLUDE_LIBRESETPROP),)
     LOCAL_C_INCLUDES += external/magisk-prebuilt/include
     LOCAL_CFLAGS += -DTW_INCLUDE_LIBRESETPROP
 endif
+ifeq ($(TW_EXCLUDE_NANO), true)
+    LOCAL_CFLAGS += -DTW_EXCLUDE_NANO
+endif
 
 TWRP_REQUIRED_MODULES += \
     relink_libraries \
@@ -404,13 +409,36 @@ TWRP_REQUIRED_MODULES += \
     vendor_hwservice_contexts \
     minadbd \
     twrpbu \
-    adbd_system_api_recovery
+    adbd_system_api_recovery \
     me.twrp.twrpapp.apk \
     privapp-permissions-twrpapp.xml
 
 ifneq ($(TW_EXCLUDE_TZDATA), true)
 TWRP_REQUIRED_MODULES += \
     tzdata_twrp
+endif
+
+ifneq ($(TW_EXCLUDE_NANO), true)
+TWRP_REQUIRED_MODULES += \
+    nano_twrp \
+    nano.rc
+endif
+
+ifneq ($(TW_EXCLUDE_BASH), true)
+    ifneq ($(wildcard external/bash/.),)
+    TWRP_REQUIRED_MODULES += \
+        bash_twrp
+    endif
+endif
+
+ifeq ($(TW_INCLUDE_REPACKTOOLS), true)
+TWRP_REQUIRED_MODULES += \
+    magiskboot
+endif
+
+ifeq ($(TW_INCLUDE_RESETPROP), true)
+TWRP_REQUIRED_MODULES += \
+    resetprop
 endif
 
 ifneq ($(TW_INCLUDE_CRYPTO),)
