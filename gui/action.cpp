@@ -242,8 +242,8 @@ GUIAction::GUIAction(xml_node<>* node)
 		ADD_ACTION(setbootslot);
 #ifndef TW_EXCLUDE_TWRPAPP
 		ADD_ACTION(installapp);
-#endif
 		ADD_ACTION(uninstalltwrpsystemapp);
+#endif
 		ADD_ACTION(repackimage);
 		ADD_ACTION(fixabrecoverybootloop);
 		ADD_ACTION(applycustomtwrpfolder);
@@ -2119,7 +2119,7 @@ exit:
 	operation_end(0);
 	return 0;
 }
-#endif
+
 
 int GUIAction::uninstalltwrpsystemapp(std::string arg __unused)
 {
@@ -2174,6 +2174,7 @@ exit:
 	operation_end(0);
 	return 0;
 }
+#endif
 
 int GUIAction::repackimage(std::string arg __unused)
 {

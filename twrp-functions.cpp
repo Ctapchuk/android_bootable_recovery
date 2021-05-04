@@ -1338,7 +1338,7 @@ bool TWFunc::Is_TWRP_App_In_System() {
 	DataManager::SetValue("tw_app_installed_in_system", 0);
 	return false;
 }
-#endif
+
 
 void TWFunc::checkforapp(){
 
@@ -1386,6 +1386,7 @@ exit:
 	return;
 
 }
+#endif
 
 int TWFunc::Property_Override(string Prop_Name, string Prop_Value) {
 #ifdef TW_INCLUDE_LIBRESETPROP
